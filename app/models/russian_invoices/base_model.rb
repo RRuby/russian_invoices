@@ -10,13 +10,28 @@ class RussianInvoices::BaseModel
     false
   end
 
-  def self.create(attributes)
-    instance = self.new(attributes)
-    if instance.valid?
-      #generate and save PDF
+  def save
+    valid?
+  end
+
+  def save!
+    if valid?
+      true
     else
-      false
+      raise RussianInvoices::ValidationError
     end
+  end
+
+  class << self
+
+    def create(attributes)
+      new(attributes).save
+    end
+
+    def create!(attributes)
+      new(attributes).save!
+    end
+
   end
 
   private

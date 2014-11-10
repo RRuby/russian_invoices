@@ -10,6 +10,15 @@ class RussianInvoices::BaseModel
     false
   end
 
+  def self.create(attributes)
+    instance = self.new(attributes)
+    if instance.valid?
+      #generate and save PDF
+    else
+      false
+    end
+  end
+
   private
   
     def attributes=(attributes)

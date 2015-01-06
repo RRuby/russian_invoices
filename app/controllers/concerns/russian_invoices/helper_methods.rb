@@ -8,13 +8,7 @@ module RussianInvoices
 
     def test_render(doc, disposition='inline', orientation='Portrait')
       respond_to do |format|
-        format.pdf do
-          render(
-            pdf: 'test',
-            file: RussianInvoices::TEMPLATES[:test],
-            layout:  RussianInvoices::LAYOUTS[:default]
-          )
-        end
+        format.pdf { render text: PDFKit.new('http://google.com').to_pdf }
       end
     end
 

@@ -6,6 +6,14 @@ module RussianInvoices
       helper_method HelperMethods.instance_methods
     end
 
+    def generate_document(type, doc)
+      case type
+      when 'test'
+      else
+        raise RussianInvoices::UndefinedDocumentType
+      end
+    end
+
     def test_render(doc)
       pdf = render_to_string(
         pdf: "test",

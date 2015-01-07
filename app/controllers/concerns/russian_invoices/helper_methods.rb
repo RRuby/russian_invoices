@@ -7,24 +7,22 @@ module RussianInvoices
     end
 
     def generate_document(type, doc)
-      case type
-      when 'test'
-      else
+      unless type.to_sym.in? RussianInvoices::TEMPLATES.keys
         raise RussianInvoices::UndefinedDocumentType
       end
+      @doc = doc
+      get_pdf(type)
     end
 
-    def test_render(doc)
-      pdf = render_to_string(
-        pdf: "test",
-        template: RussianInvoices::TEMPLATES[:test],
-        layout:RussianInvoices::LAYOUTS[:pdf]
-      )
-      save_path = Rails.root.join(Rails.root ,'public','filename.pdf')
-      File.open(save_path, 'wb') do |file|
-        file << pdf
+    private
+      
+      def get_pdf(type)
+        render_to_string(
+          pdf: type.to_s,
+          template: RussianInvoices::TEMPLATES[type.to_sym],
+          layout:RussianInvoices::LAYOUTS[:pdf]
+        )
       end
-    end
 
   end
 end

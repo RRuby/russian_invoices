@@ -7,9 +7,10 @@ module RussianInvoices
     end
 
     def test_render(doc, disposition='inline', orientation='Portrait')
-      respond_to do |format|
-        format.pdf { render text: PDFKit.new('http://localhost:3001/documents/commercial_invoices/new.pdf').to_pdf }
-      end
+      render(
+        pdf: 'test',
+        template: RussianInvoices::TEMPLATES[:test]
+      )
     end
 
   end

@@ -20,13 +20,17 @@ module RussianInvoices
       def get_pdf(type)
         render_to_string(
           pdf: type.to_s,
-          template: RussianInvoices::TEMPLATES[type.to_sym],
+          template: template_path(type),
           layout:RussianInvoices::LAYOUTS[:pdf]
         )
       end
 
       def obj_type(obj)
         obj.class.name.split('::').last.underscore
+      end
+
+      def template_path(type)
+        "/russian_invoices/documents/#{ type.to_s }.haml"
       end
 
   end

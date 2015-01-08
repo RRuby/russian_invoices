@@ -26,7 +26,7 @@ module RussianInvoices
       end
 
       def template_path(type)
-        "/russian_invoices/documents/#{ type.to_s }.haml"
+        "/russian_invoices/documents/#{ type.to_s }.html.haml"
       end
 
   end

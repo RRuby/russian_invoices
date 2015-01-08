@@ -8,9 +8,6 @@ module RussianInvoices
 
     def generate_document(doc)
       type = obj_type(obj)
-      unless type.to_sym.in? RussianInvoices::TEMPLATES.keys
-        raise RussianInvoices::UndefinedDocumentType
-      end
       @doc = doc
       get_pdf(type)
     end

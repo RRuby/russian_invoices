@@ -1,4 +1,4 @@
-class RussianInvoices::Invoice < RussianInvoices::BaseModel
+class RussianInvoices::CertificateOfCompletion < RussianInvoices::BaseModel
 
   attr_accessor :invoice_number, :invoice_from_date, :correction_number, :correction_date,
                 :seller_name, :seller_address, :seller_inn, :seller_kpp,

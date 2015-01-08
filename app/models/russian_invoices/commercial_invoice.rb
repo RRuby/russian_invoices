@@ -6,7 +6,6 @@ class RussianInvoices::CommercialInvoice < RussianInvoices::BaseModel
                 :by_payment_documents, :buyer_name, :buyer_address, :buyer_inn, :buyer_kpp,
                 :currency_name, :currency_code, :goods
 
-  validates :invoice_number, presence: true
-  validates :invoice_from_date, presence: true
+  validates_presence_of :invoice_number, :invoice_from_date
 
 end

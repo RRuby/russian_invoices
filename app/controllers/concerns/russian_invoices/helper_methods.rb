@@ -17,7 +17,7 @@ module RussianInvoices
         render_to_string(
           pdf: type.to_s,
           template: template_path(type),
-          layout:RussianInvoices::LAYOUTS[:pdf]
+          layout: RussianInvoices::LAYOUTS[:pdf]
         )
       end
 

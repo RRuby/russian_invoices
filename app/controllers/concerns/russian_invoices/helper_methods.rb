@@ -6,7 +6,8 @@ module RussianInvoices
       helper_method HelperMethods.instance_methods
     end
 
-    def generate_document(type, doc)
+    def generate_document(doc)
+      type = obj_type(obj)
       unless type.to_sym.in? RussianInvoices::TEMPLATES.keys
         raise RussianInvoices::UndefinedDocumentType
       end
@@ -22,6 +23,10 @@ module RussianInvoices
           template: RussianInvoices::TEMPLATES[type.to_sym],
           layout:RussianInvoices::LAYOUTS[:pdf]
         )
+      end
+
+      def obj_type(obj)
+        obj.class.name.split('::').last.underscore
       end
 
   end

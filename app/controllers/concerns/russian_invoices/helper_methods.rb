@@ -11,11 +11,11 @@ module RussianInvoices
       pdf = get_pdf(obj_type(doc))
       if save_to_file
         tmp_file = Tempfile.new(pdf[:document_type])
-        tmp_file << pdf[:body].force_encoding("UTF-8")
+        tmp_file << pdf[:body]
         tmp_file.close
         tmp_file
       else
-        pdf[:body].force_encoding("UTF-8")
+        pdf[:body]
       end
     end
 
@@ -34,7 +34,7 @@ module RussianInvoices
           layout: RussianInvoices::LAYOUTS[:pdf],
           encoding: 'UTF-8'
         )
-        { body: str, document_type: type }
+        { body: str.force_encoding("UTF-8"), document_type: type }
       end
 
       def obj_type(obj)

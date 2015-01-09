@@ -26,15 +26,10 @@ class RussianInvoices::BaseModel
 
     def create(attributes)
       obj = new(attributes)
-      obj.save
-      obj
-    end
-
-    def create!(attributes)
-      obj = new(attributes)
       obj.save!
       obj
     end
+    alias create! create
 
   end
 

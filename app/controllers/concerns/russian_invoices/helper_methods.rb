@@ -8,7 +8,7 @@ module RussianInvoices
 
     def generate_document(doc)
       @doc = doc
-      get_pdf(obj_type(obj))
+      get_pdf(obj_type(doc))
     end
 
     private

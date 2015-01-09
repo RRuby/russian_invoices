@@ -26,7 +26,7 @@ module RussianInvoices
     def render_pdf_document(doc, download=false)
       pdf_str = generate_document(doc, false)
       filename = obj_type(doc) + '.pdf'
-      disposition = download ? 'inline', 'attachment'
+      disposition = download ? 'attachment' : 'inline'
       send_data(pdf_str, filename: filename, disposition: disposition, type: 'application/pdf')
     end
 

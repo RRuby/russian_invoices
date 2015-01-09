@@ -1,3 +1,96 @@
-%p
-  Договор
-  = @doc.name
+%style{ type: 'text/css' }
+  :sass
+    #document_body
+      font-size: 12px
+      font-family: Tahoma, Geneva, sans-serif
+      #header
+        font-weight: bold
+        font-size: 16px
+      #header_table
+        font-size: 13px
+        width: 100%
+        td
+          width: 50%
+        .city
+          text-align: left
+        .date
+          text-align: right
+      #doc_body
+        font-size: 12px
+      #footer
+        margin-top: 30px
+        font-size: 12px
+        font-family: Tahoma, Geneva, sans-serif
+        .header
+          display: block
+          width: 100%
+          text-align: center
+          font-size: 14px
+          font-weight: bold
+        table.details
+          margin-top: 40px
+          width: 100%
+          th
+            text-align: center
+            font-size: 13px
+          td
+            width: 50%
+            vertical-align: top
+            padding-top: 10px
+          td:first-of-type
+            padding-right: 15px
+          td:last-of-type
+            padding-left: 15px
+          tr.positions
+            td:first-of-type
+              padding-left: 15px
+            td:last-of-type
+              padding-left: 30px
+          tr.signature td
+            min-height: 50px
+            vertical-align: bottom
+
+#document_body
+  %h1#header{ align: 'center' }
+    Договор
+    = @doc.name
+    №
+    = @doc.number 
+  %table#header_table
+    %tbody
+      %tr
+        %td.city
+          г.
+          = @doc.city
+        %td.date
+          = @doc.from_date
+  #doc_body
+    != @doc.body
+  #footer
+    %span.header Реквизиты и подписи сторон
+    %table.details
+      %thead
+        %tr
+          %th Заказчик
+          %th Исполнитель
+      %tbody
+        %tr
+          %td
+            != @doc.customer_details
+          %td
+            != @doc.performer_details
+        %tr.positions
+          %td= @doc.customer_position
+          %td= @doc.performer_position
+        %tr.positions.signature
+          %td
+            %img{ src: @doc.customer_signature, width: '200px' }
+            ________________________________
+          %td
+            %img{ src: @doc.performer_signature, width: '200px' }
+            ________________________________
+        %tr.positions
+          %td
+            %img{ src: @doc.customer_stamp, style: 'max-width: 200px;' }
+          %td
+            %img{ src: @doc.performer_stamp, style: 'max-width: 200px;' }

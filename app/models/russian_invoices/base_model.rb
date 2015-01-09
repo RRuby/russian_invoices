@@ -25,11 +25,15 @@ class RussianInvoices::BaseModel
   class << self
 
     def create(attributes)
-      new(attributes).save
+      obj = new(attributes)
+      obj.save
+      obj
     end
 
     def create!(attributes)
-      new(attributes).save!
+      obj = new(attributes)
+      obj.save!
+      obj
     end
 
   end

@@ -1,10 +1,11 @@
 class RussianInvoices::Contract < RussianInvoices::BaseModel
 
-  attr_accessor :number, :from_date, :name,
-                :customer_name, :customer_details, :customer_signature, :customer_print,
-                :performer_name, :performer_details, :performer_signature, :performer_print
+  attr_accessor :number, :from_date, :name, :city, :body,
+                :customer_details, :customer_position, :customer_signature, :customer_stamp,
+                :performer_details, :performer_position, :performer_signature, :performer_stamp
 
-  validates_presence_of :name, :number, :from_date, :customer_name, :customer_details,
-                        :performer_name, :performer_details
+  validates_presence_of :name, :number, :city, :from_date, :body,
+                        :customer_details, :performer_details,
+                        :customer_position, :performer_position
 
 end

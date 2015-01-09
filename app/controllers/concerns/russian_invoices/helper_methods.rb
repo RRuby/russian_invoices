@@ -6,19 +6,35 @@ module RussianInvoices
       helper_method HelperMethods.instance_methods
     end
 
-    def generate_document(doc)
+    def generate_document(doc, save_to_file=true)
       @doc = doc
-      get_pdf(obj_type(doc))
+      pdf = get_pdf(obj_type(doc))
+      if save_to_file
+        tmp_file = Tempfile.new(pdf[:document_type])
+        tmp_file << pdf[:body].force_encoding("UTF-8")
+        tmp_file.close
+        tmp_file
+      else
+        pdf[:body].force_encoding("UTF-8")
+      end
+    end
+
+    def render_pdf_document(doc)
+      pdf_str = generate_document(doc, false)
+      filename = obj_type(pdf_str) + '.pdf'
+      send_data(pdf_str, filename: filename, disposition: 'inline', type: 'application/pdf')
     end
 
     private
       
       def get_pdf(type)
-        render_to_string(
+        str = render_to_string(
           pdf: type.to_s,
           template: template_path(type),
-          layout: RussianInvoices::LAYOUTS[:pdf]
+          layout: RussianInvoices::LAYOUTS[:pdf],
+          encoding: 'UTF-8'
         )
+        { body: str, document_type: type }
       end
 
       def obj_type(obj)

@@ -8,7 +8,7 @@ module RussianInvoices
 
     def generate_document(doc, save_to_file=true)
       @doc = doc
-      pdf = get_pdf(obj_type(doc))
+      pdf = get_pdf(obj_type(doc), doc.landscape?)
       if save_to_file
         tmp_file = Tempfile.new(pdf[:document_type])
         tmp_file << pdf[:body]
@@ -36,12 +36,14 @@ module RussianInvoices
 
     private
       
-      def get_pdf(type)
+      def get_pdf(type, landscape=false)
+        orientation = landscape ? 'Landscape' : 'Portrait'
         str = render_to_string(
           pdf: type.to_s,
           template: template_path(type),
           layout: RussianInvoices::LAYOUTS[:pdf],
-          encoding: 'UTF-8'
+          encoding: 'UTF-8',
+          orientation: orientation
         )
         { body: str.force_encoding("UTF-8"), document_type: type }
       end

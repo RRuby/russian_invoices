@@ -22,6 +22,10 @@ class RussianInvoices::BaseModel
     end
   end
 
+  def landscape?
+    false
+  end
+
   class << self
 
     def create(attributes)

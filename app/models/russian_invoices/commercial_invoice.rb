@@ -4,15 +4,15 @@ class RussianInvoices::CommercialInvoice < RussianInvoices::BaseModel
                 :vendor_name, :vendor_address, :vendor_inn, :vendor_kpp,
                 :shipper_name, :shipper_address,
                 :consignee_name, :consignee_address, :to_the_payment_documents,
-                :buyer_name, :buyer_address, :buyer_inn, :buyer_kpp, :goods,
-                :chief_organization, :chief_accountant,
+                :buyer_name, :buyer_address, :buyer_inn, :buyer_kpp,
+                :currency_name, :currency_code,
+                :goods, :chief_organization, :chief_accountant,
                 :chief_organization_signature, :chief_accountant_signature,
                 :stamp
 
-  validates_presence_of :invoice_number, :invoice_from_date, :correction_number,
-                        :correction_date,
+  validates_presence_of :invoice_number, :invoice_from_date,
                         :vendor_name, :vendor_address, :vendor_inn, :vendor_kpp,
-                        :shipper_name, :shipper_address,
+                        :shipper_name,
                         :consignee_name, :consignee_address, :to_the_payment_documents,
                         :buyer_name, :buyer_address, :buyer_inn, :buyer_kpp
 
@@ -20,6 +20,16 @@ class RussianInvoices::CommercialInvoice < RussianInvoices::BaseModel
 
   def landscape?
     true
+  end
+
+  def shipper
+    shipper_name
+    "#{ shipper_name }, Адрес: #{ shipper_address }" unless shipper_address.blank?
+  end
+
+  def consignee
+    consignee_name
+    "#{ consignee_name }, Адрес: #{ consignee_address }" unless consignee_address.blank?
   end
 
   protected

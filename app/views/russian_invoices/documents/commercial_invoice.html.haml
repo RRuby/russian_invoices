@@ -42,31 +42,31 @@
     
   #top_details
     %strong Продавец:
-    ЗАО "Милана"
+    = @doc.vendor_name
     %br
     %strong Адрес:
-    129366, Москва, Ракетный бульвар, 17
+    = @doc.vendor_address
     %br
     %strong ИНН/КПП продавца:
-    7717027908/671010011
+    = "#{ @doc.vendor_inn }/#{ @doc.vendor_kpp }"
     %br
     %strong Грузоотправитель и его адрес:
-    Он же
+    = @doc.shipper
     %br
     %strong Грузополучатель и его адрес:
-    ООО "Чемпион", Адрес: 129366, Москва, Ракетный бульвар, 1
+    = @doc.consignee
     %br
     %strong К платежно-расчетному документу
-    №124 от 24.01.2014, №232 от 27.01.2014
+    = @doc.to_the_payment_documents
     %br
     %strong Покупатель:
-    ООО "Чемпион"
+    = @doc.buyer_name
     %br
     %strong Адрес:
-    129366, Москва, Ракетный бульвар, 1
+    = @doc.buyer_address
     %br
     %strong ИНН/КПП покупателя:
-    7717000408/671010011
+    = "#{ @doc.buyer_inn }/#{ @doc.buyer_kpp } "
     %br
     %strong Валюта: наименование, код:
-    Российский рубль, 643
+    = "#{ @doc.currency_name }, #{ @doc.currency_code }"

@@ -22,12 +22,27 @@
   #goods {
     margin-top: 15px;
     width: 100%;
+    font-size: 11px;
   }
   #goods th {
     border-top: solid 1px #000;
     border-left: solid 1px #000;
+    font-weight: normal;
+    padding: 3px 2px 2px 1px;
   }
   #goods thead tr th:last-child{
+    border-right: solid 1px #000;
+  }
+  #goods thead tr th.without_right_border{
+    border-right: none;
+  }
+  #goods td {
+    border-top: solid 1px #000;
+    border-left: solid 1px #000;
+    font-weight: normal;
+    padding: 3px 4px 4px 1px;
+  }
+  #goods tbody tr td:last-child{
     border-right: solid 1px #000;
   }
 #document
@@ -83,19 +98,54 @@
   %table#goods{ cellspacing: 0, cellpadding: 0 }
     %thead
       %tr
-        %th{ rowspan: 2 } Наименование товара (описание выполненных работ, оказанных услуг), имущественного права
+        %th{ rowspan: 2, width: '160px' }
+          Наименование товара (описание выполненных работ, оказанных услуг), имущественного права
         %th{ colspan: 2 } Единица измерения
         %th{ rowspan: 2 } Коли- чество (объ- ем)
         %th{ rowspan: 2 } Цена (тариф) за единицу измерения
-        %th{ rowspan: 2 } Стоимость товаров (работ, услуг), имущественных прав без налога-всего
+        %th{ rowspan: 2, width: '100px' } Стоимость товаров (работ, услуг), имущественных прав без налога-всего
         %th{ rowspan: 2 } В том числе сумма акциза
         %th{ rowspan: 2 } Налого- вая ставка
-        %th{ rowspan: 2 } Сумма налога, предъяв- ляемая покупа- телю
+        %th{ rowspan: 2, width: '50px' } Сумма налога, предъяв- ляемая покупа- телю
         %th{ rowspan: 2 } Стоимость товаров (работ, услуг), имущественных прав с налогом - всего
-        %th{ colspan: 2 } Страна происхожде- ния товара
-        %th{ rowspan: 2 } Номер таможенной декларации
+        %th{ colspan: 2, width: '150px' } Страна происхождения товара
+        %th{ rowspan: 2, width: '150px' } Номер таможенной декларации
       %tr
-        %th код
-        %th условное обозначение (национальное)
-        %th цифро- вой код
-        %th краткое наимено- вание
+        %th{ width: '23px;' } код
+        %th
+          условное обозначение
+          %nobr (национальное)
+        %th
+          цифро- вой
+          %nobr код
+        %th.without_right_border краткое наимено- вание
+      %tr
+        %th 1
+        %th 2
+        %th 2а
+        %th 3
+        %th 4
+        %th 5
+        %th 6
+        %th 7
+        %th 8
+        %th 9
+        %th 10
+        %th 10а
+        %th 11
+    %tbody
+      - @doc.goods.each do |good|
+        %tr
+          %td= good[:name]
+          %td= good[:code]
+          %td= good[:unit]
+          %td= good[:quantity]
+          %td= good[:price]
+          %td= good[:summ_without_tax]
+          %td= good[:excise_price]
+          %td= good[:tax]
+          %td= good[:buyer_tax_summ]
+          %td= good[:summ]
+          %td= good[:digital_code]
+          %td= good[:country]
+          %td= good[:number_of_customs_declaration]

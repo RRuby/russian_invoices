@@ -13,7 +13,6 @@
   .act_st2 {
     border-top: 2px solid #000;
     border-left: 2px solid #000;
-    border-bottom: 2px solid #000;
     color: #000;
     font-weight: bold;
     font-size: 12px; 
@@ -21,6 +20,10 @@
     text-align: center;
     font-family: Arial,Verdanaa, sans-serif;
     line-height: 1.3;
+  }
+  .act_st3 {
+    border-top: 2px solid #000;
+    line-height: 0;
   }
     
 %table{ width: 720, cellspacing: 0, cellpadding: 0, bgcolor: '#fff', style: 'margin: 0; padding: 0; border: 0 none; border-collapse: collapse; background-color: #fff;' }
@@ -52,20 +55,22 @@
     %td{ colspan: 2 }
       %table{ width: '100%', cellspacing: 0, cellpadding: 0 }
         %tr
-          %td.act_st1{ width: 42, height: 30, valign: 'middle' } №
+          %td.act_st1{ width: 42, height: 25, valign: 'middle' } №
           %td.act_st1{ width: 360, valign: 'middle' } Наименование работ, услуг
           %td.act_st1{ width: 76, valign: 'middle' } Кол-во
           %td.act_st1{ width: 42, valign: 'middle' } Ед.
           %td.act_st1{ width: 86, valign: 'middle' } Цена
           %td.act_st1{ valign: 'middle', style: 'border-right: 2px solid #000;' } Сумма
-          - @doc.goods.each do |good|
+          - @doc.goods.each_with_index do |good, index|
             %tr
-              %td.act_st2{ height: 30, valign: 'top' } 1
-              %td.act_st2{ valign: 'top' }= good.name
-              %td.act_st2{ valign: 'top' }= good.quantity
-              %td.act_st2{ valign: 'top' }= good.unitD
-              %td.act_st2{ valign: 'top' }= good.price
-              %td.act_st2{ valign: 'top', style: 'border-right: 2px solid #000;' }= good.summ
+              %td.act_st2{ height: 20, valign: 'top' }= index+1
+              %td.act_st2{ valign: 'top' }= good[:name]
+              %td.act_st2{ valign: 'top' }= good[:quantity].to_f
+              %td.act_st2{ valign: 'top' }= good[:unit]
+              %td.act_st2{ valign: 'top' }= good[:price].to_f.round(2)
+              %td.act_st2{ valign: 'top', style: 'border-right: 2px solid #000;' }= (good[:price].to_f * good[:quantity].to_f).round(2)
+          %tr
+            %td.act_st3{ colspan: 6 }
   %tr
     %td{ colspan: 2, height: 10 }
   %tr
@@ -75,11 +80,11 @@
           %td
           %td{ width: 148, valign: 'top', style: 'color: #000; font-size: 12px; font-style: normal; font-weight: bold; text-align: right; font-family: Arial,Verdana,sans-serif; line-height: 1.3;' } Итого:
           %td{ width: 88, valign: 'top', style: 'color: #000; font-size: 12px; font-style: normal; font-weight: normal; text-align: right; font-family: Arial,Verdana,sans-serif; line-height: 1.3;' }= @doc.summ
-        - if @doc.nds
+        - if @doc.nds && !@doc.nds.zero?
           %tr
             %td
             %td{ valign: 'top', style: 'color: #000; font-size: 12px; font-style: normal; font-weight: bold; text-align: right; font-family: Arial,Verdana,sans-serif; line-height: 1.3;' } В том числе НДС:
-            %td{ valign: 'top', style: 'color: #000; font-size: 12px; font-style: normal; font-weight: normal; text-align: right; font-family: Arial,Verdana,sans-serif; line-height: 1.3;' }= (@doc.total_summ * 18 / 118).round(2)
+            %td{ valign: 'top', style: 'color: #000; font-size: 12px; font-style: normal; font-weight: normal; text-align: right; font-family: Arial,Verdana,sans-serif; line-height: 1.3;' }= (@doc.total_summ * @doc.nds / 100).round(2)
         - else
           %tr
             %td

@@ -35,7 +35,11 @@
     от
     = @doc.invoice_from_date
     %br
-    ИСПРАВЛЕНИЕ № --- от ---
+    ИСПРАВЛЕНИЕ №
+    = @doc.correction_number
+    от
+    = @doc.correction_date
+    
   #top_details
     %strong Продавец:
     ЗАО "Милана"

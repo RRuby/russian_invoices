@@ -8,4 +8,8 @@ class RussianInvoices::CommercialInvoice < RussianInvoices::BaseModel
 
   validates_presence_of :invoice_number, :invoice_from_date
 
+  def landscape?
+    true
+  end
+
 end

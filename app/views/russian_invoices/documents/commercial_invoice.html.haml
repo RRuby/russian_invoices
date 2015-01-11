@@ -30,7 +30,10 @@
     от 26 декабря 2011 г. № 1137
   .clearfix
   #header
-    СЧЕТ-ФАКТУРА № 000289 от 31 марта 2014 г.
+    СЧЕТ-ФАКТУРА №
+    = @doc.invoice_number
+    от
+    = @doc.invoice_from_date
     %br
     ИСПРАВЛЕНИЕ № --- от ---
   #top_details

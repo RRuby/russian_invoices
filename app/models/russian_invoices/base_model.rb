@@ -1,6 +1,7 @@
 class RussianInvoices::BaseModel
 
   include ActiveModel::Model
+  define_model_callbacks :save
 
   def initialize(attributes = {})
     self.attributes = attributes
@@ -11,11 +12,13 @@ class RussianInvoices::BaseModel
   end
 
   def save
-    valid?
+    run_callbacks :save do
+      valid?
+    end
   end
 
   def save!
-    if valid?
+    if save
       true
     else
       raise RussianInvoices::ValidationError

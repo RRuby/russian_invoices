@@ -19,6 +19,17 @@
     margin-top: 7px;
     font-size: 11px;
   }
+  #goods {
+    margin-top: 15px;
+    width: 100%;
+  }
+  #goods th {
+    border-top: solid 1px #000;
+    border-left: solid 1px #000;
+  }
+  #goods thead tr th:last-child{
+    border-right: solid 1px #000;
+  }
 #document
   #right_header
     ПРИЛОЖЕНИЕ № 1
@@ -39,7 +50,6 @@
     = @doc.correction_number
     от
     = @doc.correction_date
-    
   #top_details
     %strong Продавец:
     = @doc.vendor_name
@@ -70,3 +80,22 @@
     %br
     %strong Валюта: наименование, код:
     = "#{ @doc.currency_name }, #{ @doc.currency_code }"
+  %table#goods{ cellspacing: 0, cellpadding: 0 }
+    %thead
+      %tr
+        %th{ rowspan: 2 } Наименование товара (описание выполненных работ, оказанных услуг), имущественного права
+        %th{ colspan: 2 } Единица измерения
+        %th{ rowspan: 2 } Коли- чество (объ- ем)
+        %th{ rowspan: 2 } Цена (тариф) за единицу измерения
+        %th{ rowspan: 2 } Стоимость товаров (работ, услуг), имущественных прав без налога-всего
+        %th{ rowspan: 2 } В том числе сумма акциза
+        %th{ rowspan: 2 } Налого- вая ставка
+        %th{ rowspan: 2 } Сумма налога, предъяв- ляемая покупа- телю
+        %th{ rowspan: 2 } Стоимость товаров (работ, услуг), имущественных прав с налогом - всего
+        %th{ colspan: 2 } Страна происхожде- ния товара
+        %th{ rowspan: 2 } Номер таможенной декларации
+      %tr
+        %th код
+        %th условное обозначение (национальное)
+        %th цифро- вой код
+        %th краткое наимено- вание

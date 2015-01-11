@@ -5,7 +5,7 @@ class RussianInvoices::CertificateOfCompletion < RussianInvoices::BaseModel
                 :performer_name, :performer_inn, :performer_kpp, :performer_address,
                 :goods, :summ, :nds, :performer_signature, :performer_stamp
 
-  validates :nds, presence: true, numericality: true
+  validates :nds, numericality: true
   validates_presence_of :number, :from_date,
                         :customer_name, :customer_inn, :customer_kpp, :customer_address,
                         :performer_name, :performer_inn, :performer_kpp, :performer_address

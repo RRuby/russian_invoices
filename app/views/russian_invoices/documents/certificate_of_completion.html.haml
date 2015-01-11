@@ -84,7 +84,7 @@
           %tr
             %td
             %td{ valign: 'top', style: 'color: #000; font-size: 12px; font-style: normal; font-weight: bold; text-align: right; font-family: Arial,Verdana,sans-serif; line-height: 1.3;' } В том числе НДС:
-            %td{ valign: 'top', style: 'color: #000; font-size: 12px; font-style: normal; font-weight: normal; text-align: right; font-family: Arial,Verdana,sans-serif; line-height: 1.3;' }= (@doc.total_summ * @doc.nds / 100).round(2)
+            %td{ valign: 'top', style: 'color: #000; font-size: 12px; font-style: normal; font-weight: normal; text-align: right; font-family: Arial,Verdana,sans-serif; line-height: 1.3;' }= @doc.nds_summ
         - else
           %tr
             %td

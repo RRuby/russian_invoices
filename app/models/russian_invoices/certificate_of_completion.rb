@@ -14,4 +14,8 @@ class RussianInvoices::CertificateOfCompletion < RussianInvoices::BaseModel
     goods.sum{ |good| good[:quantity]*good[:price] }.round(2)
   end
 
+  def nds_summ
+    (total_summ * nds / 100).round(2)
+  end
+
 end

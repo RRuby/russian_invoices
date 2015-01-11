@@ -1,11 +1,13 @@
 class RussianInvoices::CertificateOfCompletion < RussianInvoices::BaseModel
 
-  attr_accessor :invoice_number, :invoice_from_date, :correction_number, :correction_date,
-                :seller_name, :seller_address, :seller_inn, :seller_kpp,
-                :shipper_name, :shipper_address, :consignee_name, :consignee_address,
-                :by_payment_documents, :buyer_name, :buyer_address, :buyer_inn, :buyer_kpp,
-                :currency_name, :currency_code, :goods
+  attr_accessor :number, :from_date,
+                :customer_name, :customer_inn, :customer_kpp, :customer_address,
+                :performer_name, :performer_inn, :performer_kpp, :performer_address,
+                :goods, :summ, :nds, :total_summ, :performer_signature
 
-  validates_presence_of :invoice_number, :invoice_from_date
+  validates :total_summ, presence: true, numericality: true
+  validates_presence_of :number, :from_date,
+                        :customer_name, :customer_inn, :customer_kpp, :customer_address,
+                        :performer_name, :performer_inn, :performer_kpp, :performer_address
 
 end

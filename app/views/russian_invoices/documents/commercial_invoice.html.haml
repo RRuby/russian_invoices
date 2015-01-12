@@ -41,6 +41,10 @@
     border-left: solid 1px #000;
     font-weight: normal;
     padding: 3px 4px 4px 1px;
+    text-align: center;
+  }
+  #goods tbody tr td:first-child{
+    text-align: left;
   }
   #goods tbody tr td:last-child{
     border-right: solid 1px #000;
@@ -109,7 +113,7 @@
         %th{ rowspan: 2, width: '50px' } Сумма налога, предъяв- ляемая покупа- телю
         %th{ rowspan: 2 } Стоимость товаров (работ, услуг), имущественных прав с налогом - всего
         %th{ colspan: 2, width: '150px' } Страна происхождения товара
-        %th{ rowspan: 2, width: '150px' } Номер таможенной декларации
+        %th{ rowspan: 2, width: '140px' } Номер таможенной декларации
       %tr
         %th{ width: '23px;' } код
         %th
@@ -135,14 +139,19 @@
         %th 11
     %tbody
       - @doc.goods.each do |good|
+        - quantity = good[:quantity].to_f.to_s.split('.')
         %tr
           %td= good[:name]
           %td= good[:code]
           %td= good[:unit]
-          %td= good[:quantity]
-          %td= good[:price]
-          %td= good[:summ_without_tax]
-          %td= good[:excise_price]
+          %td= "#{ quantity.first }.#{ quantity.last.ljust(3, '0') } "
+          %td= good[:price].to_f
+          %td= good[:price].to_f*good[:quantity].to_f
+          %td
+            - if good[:excise_price].blank?
+              Без акциза
+            - else
+              = good[:excise_price].to_f
           %td= good[:tax]
           %td= good[:buyer_tax_summ]
           %td= good[:summ]

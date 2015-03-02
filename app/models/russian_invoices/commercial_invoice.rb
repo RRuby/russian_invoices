@@ -15,6 +15,7 @@ class RussianInvoices::CommercialInvoice < RussianInvoices::BaseModel
                         :shipper_name,
                         :consignee_name, :consignee_address, :to_the_payment_documents,
                         :buyer_name, :buyer_address, :buyer_inn, :buyer_kpp
+  GOOD_FIELDS = %w(name code unit quantity price excise_price tax digital_code country number_of_customs_declaration buyer_tax_summ summ)
 
   before_save :prepare_data
 
@@ -42,6 +43,11 @@ class RussianInvoices::CommercialInvoice < RussianInvoices::BaseModel
         '---'
       end
       self.correction_date ||= '---'
+      goods.each do |good|
+        GOOD_FIELDS.each do |field|
+          good[field.to_sym] ||= '---'
+        end
+      end
     end
 
 end

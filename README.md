@@ -8,7 +8,7 @@
 
 ## Установка
 
-```
+``` ruby
   gem 'russian_invoices'
 ```
 

@@ -56,32 +56,33 @@ end
 ### Пример генерацииенерация документа "акт выполненных работ".
 ``` ruby
 def show
-    doc = RussianInvoices::CertificateOfCompletion.create(
-      number: 1,
-      from_date: '1 декабря 1999',
-      customer_name: 'Иванов И.И.',
-      customer_inn: '1237778884',
-      customer_kpp: '12343521456456',
-      customer_address: 'г.Городинск, ул.Улицова, д.1., кв 165',
-      performer_name: 'Иванов И.И.',
-      performer_inn: '12568679653',
-      performer_kpp: '43578543233556',
-      performer_address: 'г.Урюпинск, ул.Ленина д.5',
-      nds: 18, #in percents
-      goods: [
-        { name: 'Позиция1', quantity: 2, unit: 'шт.', price: 22.55 },
-        { name: 'Колбаса', quantity: 2.42, unit: 'кг.', price: 347.2 },
-        { name: 'Печенье', quantity: 1.41, unit: 'кг.', price: 120.13 },
-      ],
-      performer_signature: Rails.root.join('public', 'signature.png'),
-      performer_stamp: Rails.root.join('public', 'stamp.png')
-    )
-    render_pdf_document(doc)
+  doc = RussianInvoices::CertificateOfCompletion.create(
+    number: 1,
+    from_date: '1 декабря 1999',
+    customer_name: 'Иванов И.И.',
+    customer_inn: '1237778884',
+    customer_kpp: '12343521456456',
+    customer_address: 'г.Городинск, ул.Улицова, д.1., кв 165',
+    performer_name: 'Иванов И.И.',
+    performer_inn: '12568679653',
+    performer_kpp: '43578543233556',
+    performer_address: 'г.Урюпинск, ул.Ленина д.5',
+    nds: 18, #in percents
+    goods: [
+      { name: 'Позиция1', quantity: 2, unit: 'шт.', price: 22.55 },
+      { name: 'Колбаса', quantity: 2.42, unit: 'кг.', price: 347.2 },
+      { name: 'Печенье', quantity: 1.41, unit: 'кг.', price: 120.13 },
+    ],
+    performer_signature: Rails.root.join('public', 'signature.png'),
+    performer_stamp: Rails.root.join('public', 'stamp.png')
+  )
+  render_pdf_document(doc)
 end
 ```
 
 ### Пример генерацииенерация документа "акт выполненных работ".
 ```ruby
+def show
   doc = RussianInvoices::Contract.create(
     name: 'о разработке гема',
     number: 1,

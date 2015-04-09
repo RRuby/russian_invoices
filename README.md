@@ -105,4 +105,13 @@ def show
 end
 ```
 
+##Доступные методы
+```ruby
+doc = RussianInvoices::Xxx
+render_pdf_document(doc) # отобразить документ в браузере пользователя
+download_pdf_document(doc) # скачать документ пользователю
+generate_document(doc) # Tempfile со сгенерированным документом
+generate_document_str(doc) # сгенерированный документ(String), который вы можете записать в файл.
+```
+
 This project rocks and uses MIT-LICENSE.

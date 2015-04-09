@@ -1,5 +1,5 @@
 # RussianInvoices
-Гем для генерации различных документов в формате pdf для rails приложегния.
+Гем для генерации различных документов в формате pdf, для rails приложения.
 
 ## Установка
 
@@ -12,7 +12,7 @@ gem 'russian_invoices'
 * акт выполненных работ - RussianInvoices::CertificateOfCompletion;
 * договор - RussianInvoices::CertificateOfCompletion.
 
-### Пример генерацииенерация документа "Счет фактура".
+### Пример генерации документа "Счет фактура".
 ``` ruby
 def show
   doc = RussianInvoices::CommercialInvoice.create(
@@ -53,7 +53,7 @@ def show
 end
 ```
 
-### Пример генерацииенерация документа "акт выполненных работ".
+### Пример генерации документа "акт выполненных работ".
 ``` ruby
 def show
   doc = RussianInvoices::CertificateOfCompletion.create(
@@ -80,7 +80,7 @@ def show
 end
 ```
 
-### Пример генерацииенерация документа "Договор".
+### Пример генерации документа "Договор".
 ```ruby
 def show
   doc = RussianInvoices::Contract.create(

@@ -49,6 +49,12 @@
   #goods tbody tr td:last-child{
     border-right: solid 1px #000;
   }
+  #goods tr.last td{
+    border-bottom: solid 1px #000;
+  }
+  #goods td.with_bottom{
+    border-bottom: solid 1px #000;
+  }
 #document
   #right_header
     ПРИЛОЖЕНИЕ № 1
@@ -141,6 +147,7 @@
       - @doc.goods.each do |good|
         - quantity = good[:quantity].to_f.to_s.split('.')
         %tr
+          - last_class = @doc.goods.last == good ? 'with_bottom' : nil
           %td= good[:name]
           %td= good[:code]
           %td= good[:unit]
@@ -155,6 +162,12 @@
           %td= good[:tax]
           %td= good[:buyer_tax_summ]
           %td= good[:summ]
-          %td= good[:digital_code]
-          %td= good[:country]
-          %td= good[:number_of_customs_declaration]
+          %td{ class: last_class }= good[:digital_code]
+          %td{ class: last_class }= good[:country]
+          %td{ class: last_class }= good[:number_of_customs_declaration]
+      %tr.last
+        %td{ colspan: 5 }
+        %td= @doc.goods.map { |g| g[:price]*g[:quantity] }.sum.to_s
+        %td{ colspan: 2 } X
+        %td= @doc.goods.map { |g| g[:buyer_tax_summ].to_f }.sum.to_s
+        %td= @doc.goods.map { |g| g[:summ].to_f }.sum.to_s

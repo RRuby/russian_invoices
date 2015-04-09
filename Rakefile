@@ -1,3 +1,4 @@
+#!/usr/bin/env rake
 begin
   require 'bundler/setup'
 rescue LoadError
@@ -17,9 +18,11 @@ end
 APP_RAKEFILE = File.expand_path("../test/dummy/Rakefile", __FILE__)
 load 'rails/tasks/engine.rake'
 
-
-
 Bundler::GemHelper.install_tasks
+
+Dir[File.join(File.dirname(__FILE__), 'tasks/**/*.rake')].each {|f| load f }
+require 'rspec/core'
+require 'rspec/core/rake_task'
 
 require 'rake/testtask'
 
@@ -30,5 +33,4 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
-
-task default: :test
+task default: :spec

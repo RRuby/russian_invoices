@@ -80,7 +80,7 @@ def show
 end
 ```
 
-### Пример генерации документа "Договор".
+### Пример генерации документа "договор".
 ```ruby
 def show
   doc = RussianInvoices::Contract.create(

@@ -10,7 +10,7 @@ gem 'russian_invoices'
 В данный момент есть возможность генерации следующих видов документов:
 * счет-фактура - RussianInvoices::CommercialInvoice;
 * акт выполненных работ - RussianInvoices::CertificateOfCompletion;
-* договор - RussianInvoices::CertificateOfCompletion.
+* договор - RussianInvoices::Contract.
 
 ### Пример генерации документа "Счет фактура".
 ``` ruby

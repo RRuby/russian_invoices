@@ -7,11 +7,11 @@ require "russian_invoices/version"
 Gem::Specification.new do |s|
   s.name        = "russian_invoices"
   s.version     = RussianInvoices::VERSION
-  s.authors     = ["Your name"]
-  s.email       = ["Your email"]
-  s.homepage    = ""
-  s.summary     = "Summary of RussianInvoices."
-  s.description = "Description of RussianInvoices."
+  s.authors     = ["Nikulin Aleksander"]
+  s.email       = ["info@rubyruby.ru"]
+  s.homepage    = "https://github.com/RRuby/russian_invoices"
+  s.summary     = "Gem for generating pdf documents."
+  s.description = "Gem for generating pdf documents."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
